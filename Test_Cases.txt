@@ -1,0 +1,76 @@
+10/16/2018:
+
+Feature
+Scenario
+Given, When, Then
+
+1. Feature: Add Customer Information for the first time
+Scenario: Name, Mobileand amount kept blank
+Given I need to enter Name, Mobile and amount
+When I keep all Name, Mobile and amount fields as blank
+Then throw Exception "All fields are mandatory".
+
+2. Feature: Add Customer Information for the first time
+Scenario: Entered Name but kept Mobile field and amount blank
+Given I need to enter Name, Mobile and amount
+When I enter Name as "Pranita"
+ And I keep Mobile number and amount empty
+Then throw Exception saying "Mobile Number and amount cannot be empty".
+
+3. Feature: Add Customer Information for the first time
+Scenario: Entered  Mobile but kept Name and amount fields blank
+Given I need to enter Name, Mobile and amount
+When I Mobile as "9999999999"
+ And I keep Name and amount empty
+Then throw Exception saying "Name and amount cannot be empty".
+
+4. Feature: Add Customer Information for the first time
+Scenario: Entered Name and Mobile of customer but amount kept empty
+Given I enter Name, Mobile but keep amount blank
+When I enter Name as "Pranita"
+ And Mobile as "9999999999"
+ And keep amount as blank
+Then throw Exception saying "Amount cannot be empty".
+
+5. Feature: Add Customer Information for the first time
+Scenario: Entered Name and amount but Mobile number kept empty
+Given I enter Name and amount but keep Mobile number blank
+When I enter Name as "Pranita"
+ And amount as 500/-
+ And keep the mobile number as blank
+Then throw Exception saying "Mobile number cannot be empty".
+
+6. Feature: Add Customer Information for the first time
+Scenario: Entered Mobile and amount but name kept empty
+Given I enter Mobile and amount but keep name blank
+When I enter Mobile as "9999999999"
+ And amount as 500/-
+ And keep the name as blank
+Then throw Exception saying "Name cannot be empty".
+
+7. Feature: Add Customer Information for the first time
+Scenario: Enter Name and Mobile of customer
+Given I enter Name, Mobile
+When I enter Name as "Pranita" 
+ And Mobile as "9999999999"
+ And the mobile number "9999999999" already exists
+Then I should be displayed a message saying "The customer already exists"
+
+8. Feature: Customer updates the balance in wallet
+Scenario: Update wallet balance
+Given I need to update the wallet balance
+When I update the amount in wallet as -500/-
+Then throw Exception saying "Balance cannot be negative"
+
+9. Feature: Find an existing customer by mobile number
+Scenario: Find an existing customer
+Given I need to enter Mobile number
+When I enter mobile number as empty
+Then I should get an exception saying "PhoneNumber cannot be empty"
+
+10. Feature: Find an existing customer by mobile number
+Scenario: Find an existing customer
+Given I need to find a customer by his mobile number
+ And there is customer data stored in the system
+When I enter mobile number as "9999999999"
+Then I should get the customer details displayed on the screen.
